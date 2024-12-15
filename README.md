@@ -14,28 +14,37 @@ Este repositório contém o código-fonte de uma aplicação web simples de gere
   User Id=sa;
   Password=avaliacaoJoao@123;
   TrustServerCertificate=True;
-  
 Passos para rodar o projeto
+
 Clone este repositório:
 
 cmd
-git clone https://github.com/FellipeSuke/GerenciadorDeTarefas
+```plaintext
+  git clone https://github.com/FellipeSuke/GerenciadorDeTarefas
+```
 Navegue até o diretório do projeto:
 
 cmd
+```plaintext
 cd gerenciador-de-tarefas
+```
 Restaure as dependências:
 
 cmd
+```plaintext
 dotnet restore
-Execute a migração do banco de dados (caso esteja usando o SQL Server):
-
+```
 cmd
+```plaintext
 dotnet ef database update
+```
 Execute o projeto:
 
 cmd
+```plaintext
 dotnet run
+```
+
 Abra o navegador e acesse o endereço:
 
 http://localhost:5000
