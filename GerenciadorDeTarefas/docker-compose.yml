@@ -1,0 +1,12 @@
+﻿services:
+  gerenciador-de-tarefas:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: gerenciador-de-tarefas
+    ports:
+      - "17435:17435"
+      - "5269:17436"
+networks:
+  gerenciador-network:
+    driver: bridge
