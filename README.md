@@ -19,7 +19,7 @@ Passos para rodar o projeto
 Clone este repositório:
 
 cmd
-git clone https://github.com/SEU-USUARIO/gerenciador-de-tarefas.git
+git clone https://github.com/FellipeSuke/GerenciadorDeTarefas
 Navegue até o diretório do projeto:
 
 cmd
