@@ -42,11 +42,30 @@ cmd
 dotnet run
 ```
 
-Abra o navegador e acesse o endereço:
+Abra o navegador:
 
+O servidor estará rodando localmente. Acesse o endereço:
+
+```plaintext
 http://localhost:5000
+```
 
-Estrutura do Projeto
+Se preferir, você também pode acessar a versão HTTPS do projeto:
+
+```plaintext
+
+https://localhost:7245
+```
+(Dependendo da sua configuração de perfil de execução.)
+
+Configuração de Perfis de Execução
+Este projeto contém diferentes perfis de execução configurados no arquivo launchSettings.json. Eles determinam como o projeto será executado em diferentes ambientes:
+
+http: Disponibiliza a aplicação na URL http://localhost:5269.
+https: Disponibiliza a aplicação tanto em HTTP quanto em HTTPS, nas URLs http://localhost:5269 e https://localhost:7245, respectivamente.
+IIS Express: Executa o projeto usando o IIS Express, com a URL definida na configuração do perfil.
+
+# Estrutura do Projeto
 Controllers: Contém os controladores que gerenciam a lógica de negócios e interagem com as Views e Models.
 Models: Representação das entidades do sistema, incluindo a classe Tarefa.
 Views: Contém as páginas HTML que são renderizadas ao usuário.
@@ -57,3 +76,5 @@ Entity Framework Core: ORM utilizado para a persistência de dados.
 SQL Server (ou InMemoryDatabase): Banco de dados utilizado para armazenamento das tarefas.
 AJAX: Tecnologia utilizada para melhorar a experiência do usuário sem recarregar a página.
 Bootstrap: Framework CSS para tornar as interfaces responsivas e visualmente agradáveis.
+
+
