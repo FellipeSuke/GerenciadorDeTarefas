@@ -1,21 +1,16 @@
 ﻿# Etapa de construção
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
-EXPOSE 80
+EXPOSE 8080
 EXPOSE 443
 
 # Etapa de build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-
-# Copia o arquivo .csproj para o diretório de trabalho dentro do contêiner
-COPY ["GerenciadorDeTarefas.csproj", "./"]
-RUN dotnet restore "GerenciadorDeTarefas.csproj"
-
-# Copia todos os arquivos do diretório para o contêiner
-COPY . .
-
-# Realiza a build do projeto
+COPY ["GerenciadorDeTarefas/GerenciadorDeTarefas.csproj", "GerenciadorDeTarefas/"]
+RUN dotnet restore "GerenciadorDeTarefas/GerenciadorDeTarefas.csproj"
+COPY . . 
+WORKDIR "/src/GerenciadorDeTarefas"
 RUN dotnet build "GerenciadorDeTarefas.csproj" -c Release -o /app/build
 
 # Etapa de publicação
@@ -25,9 +20,6 @@ RUN dotnet publish "GerenciadorDeTarefas.csproj" -c Release -o /app/publish
 # Etapa final
 FROM base AS final
 WORKDIR /app
-
-# Copia os arquivos publicados da etapa de publicação
 COPY --from=publish /app/publish .
 
-# Define o ponto de entrada da aplicação
 ENTRYPOINT ["dotnet", "GerenciadorDeTarefas.dll"]
