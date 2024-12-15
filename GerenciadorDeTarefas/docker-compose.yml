@@ -9,9 +9,3 @@ services:
     ports:
       - "17435:8080"  # HTTP
       - "5269:443"    # HTTPS (para o Kestrel no Docker)
-    volumes:
-      - ./dataProtectionKeys:/root/.aspnet/DataProtection-Keys
-      - ./Data/certificado.pfx:/root/.aspnet/https/certificado.pfx  # Volume para o certificado SSL
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Production
-    command: ["dotnet", "GerenciadorDeTarefas.dll"]
