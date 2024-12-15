@@ -5,12 +5,13 @@
       context: .
       dockerfile: Dockerfile
     ports:
-      - "17435:8080"  # HTTP
-      - "5269:443"    # HTTPS (para o Kestrel no Docker)
+      - "7245:7245"  # HTTPS
+      - "5269:5269"  # HTTP
     volumes:
       - ./dataProtectionKeys:/root/.aspnet/DataProtection-Keys  # Persistência das chaves de proteção de dados
+      - ./Data/certificado.pfx:/https/certificado.pfx  # Certificado
     environment:
       - DOTNET_RUNNING_IN_CONTAINER=true
       - DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=http://*:5269;https://*:7245
+      - ASPNETCORE_URLS=https://*:7245;http://*:5269
