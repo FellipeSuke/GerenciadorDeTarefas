@@ -7,8 +7,8 @@ EXPOSE 443
 # Etapa de build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["GerenciadorDeTarefas/GerenciadorDeTarefas.csproj", "GerenciadorDeTarefas/"]
-RUN dotnet restore "GerenciadorDeTarefas/GerenciadorDeTarefas.csproj"
+COPY ["GerenciadorDeTarefas.csproj", "GerenciadorDeTarefas/"]
+RUN dotnet restore "GerenciadorDeTarefas.csproj"
 COPY . .
 WORKDIR "/src/GerenciadorDeTarefas"
 RUN dotnet build "GerenciadorDeTarefas.csproj" -c Release -o /app/build
