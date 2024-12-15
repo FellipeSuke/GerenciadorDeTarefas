@@ -34,10 +34,7 @@ cmd
 ```plaintext
 dotnet restore
 ```
-cmd
-```plaintext
-dotnet ef database update
-```
+
 Execute o projeto:
 
 cmd
