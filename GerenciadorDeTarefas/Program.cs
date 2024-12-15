@@ -1,7 +1,18 @@
 using GerenciadorDeTarefas.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.X509Certificates;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configurar o certificado HTTPS
+var certPath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "certificado.pfx");
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ConfigureHttpsDefaults(httpsOptions =>
+    {
+        httpsOptions.ServerCertificate = new X509Certificate2(certPath, "123456789"); // Substitua "senha" pela senha do certificado
+    });
+});
 
 // Configurar o DbContext com a string de conexão
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -16,7 +27,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
