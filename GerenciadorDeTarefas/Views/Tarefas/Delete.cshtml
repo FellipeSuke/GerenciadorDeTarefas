@@ -1,0 +1,13 @@
+﻿@model GerenciadorDeTarefas.Models.Tarefa
+
+<div class="container mt-4">
+    <h3>Confirmar Exclusão</h3>
+    <p>Você tem certeza que deseja excluir a tarefa: <strong>@Model.Titulo</strong>?</p>
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="text-end">
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-danger">Excluir</button>
+        </div>
+    </form>
+</div>

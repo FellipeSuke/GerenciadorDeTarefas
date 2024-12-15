@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bem-vindo</h1>
+    <h2>Gerenciador de Tarefas</h2>
+</div>
+
+<div class="mt-4">
+    <h3>Objetivo do Teste:</h3>
+    <p>
+        Avaliar a capacidade do desenvolvedor em criar uma aplicação web funcional utilizando o
+        padrão MVC no ASP.NET Core, com foco em boas práticas de codificação, organização do
+        código e implementação de funcionalidades básicas.
+    </p>
+
+    <h3>Descrição do Problema:</h3>
+    <p>
+        Você foi contratado para desenvolver uma aplicação simples de gerenciamento de
+        tarefas. A aplicação deve permitir que os usuários realizem as seguintes ações:
+    </p>
+    <ul>
+        <li>Listar tarefas cadastradas.</li>
+        <li>Adicionar uma nova tarefa.</li>
+        <li>Editar uma tarefa existente.</li>
+        <li>Excluir uma tarefa.</li>
+        <li>Alterar o status da tarefa (Pendente/Concluída).</li>
+    </ul>
+
+    <h3>Requisitos:</h3>
+    <h5>Funcionais:</h5>
+    <ul>
+        <li>Um usuário deve ser capaz de visualizar a lista de tarefas.</li>
+        <li>Um usuário deve ser capaz de adicionar novas tarefas com os campos: título, descrição e data de vencimento.</li>
+        <li>Um usuário deve ser capaz de editar as informações de uma tarefa existente.</li>
+        <li>Um usuário deve ser capaz de excluir uma tarefa.</li>
+        <li>Um usuário deve ser capaz de alterar o status da tarefa entre "Pendente" e "Concluída".</li>
+    </ul>
+    <h5>Não Funcionais:</h5>
+    <ul>
+        <li>O projeto deve ser desenvolvido em ASP.NET Core MVC.</li>
+        <li>Use Entity Framework Core para a persistência de dados.</li>
+        <li>Utilize um banco de dados SQL Server ou InMemoryDatabase para simplificar a execução.</li>
+        <li>As interfaces (Views) devem ser responsivas e amigáveis, mas não é necessário criar um design sofisticado.</li>
+    </ul>
+
+    <h3>Entrega:</h3>
+    <p>Ao final, entregue:</p>
+    <ol>
+        <li>O código fonte da aplicação.</li>
+        <li>Instruções claras para rodar o projeto.</li>
+    </ol>
+
+    <h3>Critérios de Avaliação:</h3>
+    <ul>
+        <li>Estrutura e organização do projeto.</li>
+        <li>Correção das funcionalidades implementadas.</li>
+        <li>Utilização de boas práticas de desenvolvimento.</li>
+        <li>Clareza e limpeza do código.</li>
+        <li>Uso adequado do padrão MVC.</li>
+    </ul>
+
+    <p>
+        Inclua no teste a utilização de modais e chamadas AJAX para melhorar a experiência
+        do usuário. Utilize modais para os formulários de criar e editar tarefas, carregados
+        dinamicamente via AJAX. Além disso, utilize AJAX para realizar a alteração do status
+        de uma tarefa diretamente na lista, sem recarregar a página.
+    </p>
+</div>

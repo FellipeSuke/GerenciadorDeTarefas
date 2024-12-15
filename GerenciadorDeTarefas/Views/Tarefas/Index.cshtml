@@ -1,0 +1,105 @@
+﻿@model IEnumerable<GerenciadorDeTarefas.Models.Tarefa>
+@{
+    ViewData["Title"] = "Lista de Tarefas";
+}
+
+<div class="container mt-4">
+    <h2>Lista de Tarefas</h2>
+    <a href="javascript:void(0);" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createModal" onclick="loadCreateForm()">Adicionar Tarefa</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Descrição</th>
+                <th>Data de Vencimento</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var tarefa in Model)
+            {
+                <tr>
+                    <td>@tarefa.Id</td>
+                    <td>@tarefa.Titulo</td>
+                    <td>@tarefa.Descricao</td>
+                    <td>@tarefa.DataVencimento.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        <span class="badge @((tarefa.Status == "Concluída") ? "bg-success" : "bg-warning")">
+                            @tarefa.Status
+                        </span>
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#editModal" onclick="loadEditForm(@tarefa.Id)">Editar</button>
+                        <form action="/Tarefas/Delete/@tarefa.Id" method="post" style="display: inline;">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                        </form>
+                        <button class="btn btn-sm btn-secondary" onclick="alterarStatus(@tarefa.Id)">
+                            Alterar Status
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Modais para criar e editar tarefas -->
+<div id="createModal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Criar Nova Tarefa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="createForm">
+                <!-- Formulário será carregado dinamicamente via AJAX -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="editModal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Tarefa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="editForm">
+                <!-- Formulário será carregado dinamicamente via AJAX -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Carregar o formulário de criação via AJAX
+    function loadCreateForm() {
+        $.get('/Tarefas/Create', function (data) {
+            $('#createForm').html(data); // Carrega apenas o conteúdo sem header/footer
+        });
+    }
+
+    // Carregar o formulário de edição via AJAX
+    function loadEditForm(id) {
+        $.get('/Tarefas/Edit/' + id, function (data) {
+            $('#editForm').html(data);
+        });
+    }
+
+    // Alterar o status da tarefa com feedback
+    function alterarStatus(id) {
+        $.post('/Tarefas/AlterarStatus', { id: id }, function (data) {
+            if (data.success) {
+                alert(data.mensagem);
+                location.reload();
+            } else {
+                alert("Erro ao alterar o status.");
+            }
+        });
+    }
+</script>

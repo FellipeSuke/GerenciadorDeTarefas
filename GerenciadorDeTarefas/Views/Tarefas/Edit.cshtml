@@ -1,0 +1,20 @@
+﻿@model GerenciadorDeTarefas.Models.Tarefa
+@{
+    Layout = null; // Remove o layout principal
+}
+
+<form asp-action="Edit" method="post" id="editForm">
+    <div class="mb-3">
+        <label for="Titulo" class="form-label">Título</label>
+        <input asp-for="Titulo" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="Descricao" class="form-label">Descrição</label>
+        <textarea asp-for="Descricao" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="DataVencimento" class="form-label">Data de Vencimento</label>
+        <input asp-for="DataVencimento" type="date" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+</form>
