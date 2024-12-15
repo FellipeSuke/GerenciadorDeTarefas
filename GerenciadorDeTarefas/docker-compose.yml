@@ -1,6 +1,4 @@
-﻿version: '3.8'
-
-services:
+﻿services:
   gerenciador-de-tarefas:
     image: gerenciador-de-tarefas
     build:
@@ -9,3 +7,10 @@ services:
     ports:
       - "17435:8080"  # HTTP
       - "5269:443"    # HTTPS (para o Kestrel no Docker)
+    volumes:
+      - ./dataProtectionKeys:/root/.aspnet/DataProtection-Keys  # Persistência das chaves de proteção de dados
+    environment:
+      - DOTNET_RUNNING_IN_CONTAINER=true
+      - DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://*:5269;https://*:7245
