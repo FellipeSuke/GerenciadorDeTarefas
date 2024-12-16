@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Configuração do certificado HTTPS (opcional e baseado em ambiente)
 var certPath = Environment.GetEnvironmentVariable("CERT_PATH")
                ?? Path.Combine(Directory.GetCurrentDirectory(), "Data", "certificado.pfx");
-var certPassword = Environment.GetEnvironmentVariable("CERT_PASSWORD") ?? "123456789"; // senha do certificado
+var certPassword = Environment.GetEnvironmentVariable("CERT_PASSWORD") ?? "123456789"; // senha do certificado auto-assinado Fellipe
 
 if (File.Exists(certPath))
 {
@@ -26,7 +26,7 @@ else
 
 // Configurar o DbContext com a string de conexão (usar variáveis de ambiente)
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-                       ?? "Server=sukeserver.ddns.net,8033;Database=GerenciadorDeTarefas;User Id=sa;Password=avaliacaoJoao@123;TrustServerCertificate=True;";
+                       ?? "Server=sukeserver.ddns.net,8033;Database=GerenciadorDeTarefas;User Id=sa;Password=avaliacaoJoao@123;TrustServerCertificate=True;"; // conexão com banco de dados sem arquivo externo
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
