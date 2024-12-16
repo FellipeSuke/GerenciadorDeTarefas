@@ -26,7 +26,7 @@ else
 
 // Configurar o DbContext com a string de conexão (usar variáveis de ambiente)
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-                       ?? "Server=sukeserver.ddns.net,1433;Database=GerenciadorDeTarefas;User Id=sa;Password=avaliacaoJoao@123;TrustServerCertificate=True;";
+                       ?? "Server=sukeserver.ddns.net,8033;Database=GerenciadorDeTarefas;User Id=sa;Password=avaliacaoJoao@123;TrustServerCertificate=True;";
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
