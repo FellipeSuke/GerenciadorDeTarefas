@@ -4,27 +4,38 @@ using System.Security.Cryptography.X509Certificates;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configurar o certificado HTTPS
-var certPath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "certificado.pfx"); //inserido certificado auto assinado para testes de deploy em ambiente docker (https://sukeserver.ddns.net:7245/)
+// Configuração do certificado HTTPS (opcional e baseado em ambiente)
+var certPath = Environment.GetEnvironmentVariable("CERT_PATH")
+               ?? Path.Combine(Directory.GetCurrentDirectory(), "Data", "certificado.pfx");
+var certPassword = Environment.GetEnvironmentVariable("CERT_PASSWORD") ?? "123456789"; // senha do certificado
 
-builder.WebHost.ConfigureKestrel(options =>
+if (File.Exists(certPath))
 {
-    options.ConfigureHttpsDefaults(httpsOptions =>
+    builder.WebHost.ConfigureKestrel(options =>
     {
-        httpsOptions.ServerCertificate = new X509Certificate2(certPath, "123456789"); // senha do certificado
+        options.ConfigureHttpsDefaults(httpsOptions =>
+        {
+            httpsOptions.ServerCertificate = new X509Certificate2(certPath, certPassword);
+        });
     });
-});
+}
+else
+{
+    Console.WriteLine("Certificado não encontrado. HTTPS não será configurado.");
+}
 
-// Configurar o DbContext com a string de conexão
+// Configurar o DbContext com a string de conexão (usar variáveis de ambiente)
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+                       ?? "Server=sukeserver.ddns.net,1433;Database=GerenciadorDeTarefas;User Id=sa;Password=avaliacaoJoao@123;TrustServerCertificate=True;";
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer("Server=sukeserver.ddns.net,1433;Database=GerenciadorDeTarefas;User Id=sa;Password=avaliacaoJoao@123;TrustServerCertificate=True;")); //Banco SqlServer configurado para a aplicação e docker com acesso publico
+    options.UseSqlServer(connectionString));
 
-// Add services to the container.
+// Adicionar serviços MVC
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configurar o pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
