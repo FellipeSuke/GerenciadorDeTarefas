@@ -2,6 +2,9 @@
 
 Este repositório contém o código-fonte de uma aplicação web simples de gerenciamento de tarefas, desenvolvida como parte de um teste prático para o CREA. A aplicação foi construída utilizando o padrão MVC no ASP.NET Core, com o objetivo de avaliar a capacidade do desenvolvedor em criar uma aplicação funcional, organizada e com boas práticas de codificação.
 
+## **Link de teste**
+https://sukeserver.ddns.net:7245/
+
 ## Como Rodar o Projeto
 
 ### Requisitos
