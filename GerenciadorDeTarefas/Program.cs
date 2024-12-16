@@ -5,18 +5,19 @@ using System.Security.Cryptography.X509Certificates;
 var builder = WebApplication.CreateBuilder(args);
 
 // Configurar o certificado HTTPS
-var certPath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "certificado.pfx");
+var certPath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "certificado.pfx"); //inserido certificado auto assinado para testes de deploy em ambiente docker (https://sukeserver.ddns.net:7245/)
+
 builder.WebHost.ConfigureKestrel(options =>
 {
     options.ConfigureHttpsDefaults(httpsOptions =>
     {
-        httpsOptions.ServerCertificate = new X509Certificate2(certPath, "123456789"); // Substitua "senha" pela senha do certificado
+        httpsOptions.ServerCertificate = new X509Certificate2(certPath, "123456789"); // senha do certificado
     });
 });
 
 // Configurar o DbContext com a string de conexão
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer("Server=sukeserver.ddns.net,1433;Database=GerenciadorDeTarefas;User Id=sa;Password=avaliacaoJoao@123;TrustServerCertificate=True;"));
+    options.UseSqlServer("Server=sukeserver.ddns.net,1433;Database=GerenciadorDeTarefas;User Id=sa;Password=avaliacaoJoao@123;TrustServerCertificate=True;")); //Banco SqlServer configurado para a aplicação e docker com acesso publico
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

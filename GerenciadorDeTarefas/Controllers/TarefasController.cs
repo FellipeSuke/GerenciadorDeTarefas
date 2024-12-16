@@ -9,7 +9,7 @@ namespace GerenciadorDeTarefas.Controllers
     {
         private readonly AppDbContext _context;
 
-        // Construtor com injeção do DbContext
+        
         public TarefasController(AppDbContext context)
         {
             _context = context;
@@ -54,9 +54,9 @@ namespace GerenciadorDeTarefas.Controllers
             {
                 _context.Tarefas.Add(tarefa);
                 await _context.SaveChangesAsync();
-                return Json(new { success = true, mensagem = "Tarefa adicionada com sucesso!" });
+                return Json(new { success = true, mensagem = "Tarefa adicionada com sucesso!" }); //retorno com json teste
             }
-            return Json(new { success = false, mensagem = "Erro ao adicionar tarefa." });
+            return Json(new { success = false, mensagem = "Erro ao adicionar tarefa." });  // retorno com json teste com erro
         }
 
         // ================================

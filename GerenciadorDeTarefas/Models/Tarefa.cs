@@ -18,6 +18,6 @@ namespace GerenciadorDeTarefas.Models
         public DateTime DataVencimento { get; set; }
 
         [Required]
-        public string Status { get; set; } = "Pendente"; // Valores: "Pendente" ou "Concluída"
+        public string Status { get; set; } = "Pendente"; // Valores: "Pendente" ou "Concluída" como solicitado (sem prazos de expiração)
     }
 }

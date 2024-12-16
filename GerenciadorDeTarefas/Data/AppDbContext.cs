@@ -18,7 +18,7 @@ namespace GerenciadorDeTarefas.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configuração adicional de mapeamento, se necessário
+            // Configuração adicional de mapeamento, se necessário (usuario para tarefa, login para tarefa, etc...)
         }
     }
 }
