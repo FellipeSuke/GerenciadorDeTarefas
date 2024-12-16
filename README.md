@@ -52,7 +52,7 @@ Abra o navegador:
 O servidor estará rodando localmente. Acesse o endereço:
 
 ```plaintext
-http://localhost:5000
+http://localhost:5269
 ```
 
 Se preferir, você também pode acessar a versão HTTPS do projeto:
@@ -69,6 +69,56 @@ Este projeto contém diferentes perfis de execução configurados no arquivo lau
 http: Disponibiliza a aplicação na URL http://localhost:5269.
 https: Disponibiliza a aplicação tanto em HTTP quanto em HTTPS, nas URLs http://localhost:5269 e https://localhost:7245, respectivamente.
 IIS Express: Executa o projeto usando o IIS Express, com a URL definida na configuração do perfil.
+
+# **Docker**
+
+Instale o Docker
+Caso não tenha o Docker instalado, siga as instruções de acordo com o seu sistema operacional:
+
+Docker para Windows
+Docker para MacOS
+Docker para Linux
+Instale o Docker Compose
+O Docker Compose geralmente já vem incluído com o Docker Desktop no Windows e Mac.
+No Linux, você pode instalar seguindo este guia oficial.
+
+Clone o repositório da aplicação
+
+bash
+```plaintext
+git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/FellipeSuke/GerenciadorDeTarefas.git)
+cd seu-repositorio
+```
+Certifique-se de que o arquivo docker-compose.yml está configurado corretamente
+
+Execute o comando para subir os containers
+
+bash
+```plaintext
+docker-compose up -d
+```
+Verifique se os containers estão rodando
+Use o comando abaixo para verificar o status dos containers:
+
+bash
+
+```plaintext
+docker ps
+```
+Acesse a aplicação
+Abra o navegador e acesse o endereço configurado no docker-compose.yml. Geralmente é:
+
+http://localhost:porta
+
+Parar os containers
+Caso precise parar a aplicação, use:
+
+bash
+```plaintext
+docker-compose down
+```
+
+
 
 # Estrutura do Projeto
 Controllers: Contém os controladores que gerenciam a lógica de negócios e interagem com as Views e Models.
